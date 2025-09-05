@@ -1,0 +1,25 @@
+{
+  "name": "sink12138-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sink12138/sink12138-blog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sink12138/sink12138-blog/issues"
+  },
+  "homepage": "https://github.com/sink12138/sink12138-blog#readme",
+  "devDependencies": {
+    "vitepress": "^2.0.0-alpha.12"
+  }
+}
