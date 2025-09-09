@@ -46,9 +46,9 @@ jobs:
         username: ${{ secrets.ECS_USERNAME }}
         key: ${{ secrets.ECS_SSH_KEY }}
         port: ${{ secrets.ECS_PORT }}
-        source: ".vitepress/dist/*"
-        target: "/app/dist"
-        strip_components: 3
+        source: ".vitepress/dist/"
+        target: "/tmp/sink12138-blog/"
+        strip_components: 0
         
     - name: Update nginx and restart
       uses: appleboy/ssh-action@v1.0.3
@@ -58,14 +58,11 @@ jobs:
         key: ${{ secrets.ECS_SSH_KEY }}
         port: ${{ secrets.ECS_PORT }}
         script: |
-          # 设置文件权限
+          sudo rm -rf /app/dist/*
+          sudo cp -r /tmp/sink12138-blog/* /app/dist/
           sudo chown -R www-data:www-data /app/dist
-          sudo chmod -R 755 "/app/dist"
-          
-          # 测试nginx配置
+          sudo chmod -R 755 /app/dist
+          sudo rm -rf /tmp/sink12138-blog/*
           sudo nginx -t
-          
-          # 重启nginx
           sudo systemctl reload nginx
-          
           echo "部署完成！"
