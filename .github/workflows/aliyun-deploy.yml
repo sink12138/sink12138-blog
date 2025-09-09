@@ -33,11 +33,11 @@ jobs:
         port: ${{ secrets.ECS_PORT }}
         script: |
           # 创建部署目录
-          sudo mkdir -p /app/dist
+          sudo mkdir -p /app
           
           # 设置正确的权限
-          sudo chown -R www-data:www-data /app/dist
-          sudo chmod -R 755 /app/dist
+          sudo chown -R www-data:www-data /app
+          sudo chmod -R 755 /app
           
     - name: Copy files to ECS
       uses: appleboy/scp-action@v0.1.7
@@ -58,11 +58,11 @@ jobs:
         key: ${{ secrets.ECS_SSH_KEY }}
         port: ${{ secrets.ECS_PORT }}
         script: |
-          sudo rm -rf /app/dist/*
+          sudo rm -rf /app/*
           sudo ls /tmp/sink12138-blog/
-          sudo cp -r /tmp/sink12138-blog/* /app/dist/
-          sudo chown -R www-data:www-data /app/dist
-          sudo chmod -R 755 /app/dist
+          sudo cp -r /tmp/sink12138-blog/* /app
+          sudo chown -R www-data:www-data /app
+          sudo chmod -R 755 /app
           sudo rm -rf /tmp/sink12138-blog/*
           sudo nginx -t
           sudo systemctl reload nginx
