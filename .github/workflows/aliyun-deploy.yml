@@ -46,7 +46,7 @@ jobs:
         username: ${{ secrets.ECS_USERNAME }}
         key: ${{ secrets.ECS_SSH_KEY }}
         port: ${{ secrets.ECS_PORT }}
-        source: "docs/.vitepress/dist/*"
+        source: ".vitepress/dist/*"
         target: "/app/dist"
         strip_components: 3
         
