@@ -1,0 +1,82 @@
+name: aliyun CD
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build VitePress
+      run: npm run docs:build
+      
+    - name: Deploy to Aliyun ECS
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.ECS_HOST }}
+        username: ${{ secrets.ECS_USERNAME }}
+        key: ${{ secrets.ECS_SSH_KEY }}
+        port: ${{ secrets.ECS_PORT }}
+        script: |
+          # 创建部署目录
+          sudo mkdir -p /app/dist
+          
+          # 备份当前版本
+          if [ -d "/app/dist/current" ]; then
+            sudo mv /app/dist/current /app/dist/backup-$(date +%Y%m%d-%H%M%S)
+          fi
+          
+          # 创建新版本目录
+          sudo mkdir -p /app/dist/current
+          
+          # 设置正确的权限
+          sudo chown -R www-data:www-data /app/dist
+          sudo chmod -R 755 /app/dist
+          
+    - name: Copy files to ECS
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.ECS_HOST }}
+        username: ${{ secrets.ECS_USERNAME }}
+        key: ${{ secrets.ECS_SSH_KEY }}
+        port: ${{ secrets.ECS_PORT }}
+        source: "docs/.vitepress/dist/*"
+        target: "/app/dist"
+        strip_components: 3
+        
+    - name: Update nginx and restart
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.ECS_HOST }}
+        username: ${{ secrets.ECS_USERNAME }}
+        key: ${{ secrets.ECS_SSH_KEY }}
+        port: ${{ secrets.ECS_PORT }}
+        script: |
+          # 设置文件权限
+          sudo chown -R www-data:www-data /app/dist/current
+          sudo chmod -R 755 /app/dist/current
+          
+          # 测试nginx配置
+          sudo nginx -t
+          
+          # 重启nginx
+          sudo systemctl reload nginx
+          
+          # 清理旧备份（保留最近3个）
+          sudo find /app/dist -name "backup-*" -type d | sort | head -n -3 | sudo xargs rm -rf
+          
+          echo "部署完成！"
