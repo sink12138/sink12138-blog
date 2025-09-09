@@ -46,7 +46,7 @@ jobs:
         username: ${{ secrets.ECS_USERNAME }}
         key: ${{ secrets.ECS_SSH_KEY }}
         port: ${{ secrets.ECS_PORT }}
-        source: ".vitepress/dist/"
+        source: ".vitepress/dist/*"
         target: "/tmp/sink12138-blog/"
         strip_components: 0
         
@@ -59,7 +59,8 @@ jobs:
         port: ${{ secrets.ECS_PORT }}
         script: |
           sudo rm -rf /app/dist/*
-          sudo cp -r /tmp/sink12138-blog/* /app/dist/
+          sudo ls /tmp/sink12138-blog/
+          sudo cp -r /tmp/sink12138-blog/ /app/dist/
           sudo chown -R www-data:www-data /app/dist
           sudo chmod -R 755 /app/dist
           sudo rm -rf /tmp/sink12138-blog/*
