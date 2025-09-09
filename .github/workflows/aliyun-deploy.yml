@@ -48,7 +48,7 @@ jobs:
         port: ${{ secrets.ECS_PORT }}
         source: ".vitepress/dist/*"
         target: "/tmp/sink12138-blog/"
-        strip_components: 0
+        strip_components: 1
         
     - name: Update nginx and restart
       uses: appleboy/ssh-action@v1.0.3
@@ -60,7 +60,7 @@ jobs:
         script: |
           sudo rm -rf /app/dist/*
           sudo ls /tmp/sink12138-blog/
-          sudo cp -r /tmp/sink12138-blog/ /app/dist/
+          sudo cp -r /tmp/sink12138-blog/* /app/dist/
           sudo chown -R www-data:www-data /app/dist
           sudo chmod -R 755 /app/dist
           sudo rm -rf /tmp/sink12138-blog/*
