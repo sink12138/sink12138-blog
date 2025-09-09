@@ -35,14 +35,6 @@ jobs:
           # 创建部署目录
           sudo mkdir -p /app/dist
           
-          # 备份当前版本
-          if [ -d "/app/dist/current" ]; then
-            sudo mv /app/dist/current /app/dist/backup-$(date +%Y%m%d-%H%M%S)
-          fi
-          
-          # 创建新版本目录
-          sudo mkdir -p /app/dist/current
-          
           # 设置正确的权限
           sudo chown -R www-data:www-data /app/dist
           sudo chmod -R 755 /app/dist
@@ -67,16 +59,13 @@ jobs:
         port: ${{ secrets.ECS_PORT }}
         script: |
           # 设置文件权限
-          sudo chown -R www-data:www-data /app/dist/current
-          sudo chmod -R 755 /app/dist/current
+          sudo chown -R www-data:www-data /app/dist
+          sudo chmod -R 755 "/app/dist"
           
           # 测试nginx配置
           sudo nginx -t
           
           # 重启nginx
           sudo systemctl reload nginx
-          
-          # 清理旧备份（保留最近3个）
-          sudo find /app/dist -name "backup-*" -type d | sort | head -n -3 | sudo xargs rm -rf
           
           echo "部署完成！"
