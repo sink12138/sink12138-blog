@@ -1,4 +1,4 @@
-name: aliyun CD
+name: Aliyun CD
 
 on:
   push:

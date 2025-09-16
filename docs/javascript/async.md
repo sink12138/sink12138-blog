@@ -114,37 +114,6 @@ async function fetchMultipleData() {
 }
 ```
 
-## 生成器 (Generator)
-
-### 基本用法
-
-```javascript
-function* numberGenerator() {
-  yield 1;
-  yield 2;
-  yield 3;
-}
-
-const generator = numberGenerator();
-console.log(generator.next().value); // 1
-console.log(generator.next().value); // 2
-console.log(generator.next().value); // 3
-```
-
-### 异步生成器
-
-```javascript
-async function* asyncGenerator() {
-  yield await fetchData1();
-  yield await fetchData2();
-  yield await fetchData3();
-}
-
-for await (const data of asyncGenerator()) {
-  console.log(data);
-}
-```
-
 ## 事件循环 (Event Loop)
 
 ### 执行顺序
@@ -273,6 +242,9 @@ async function handleData() {
   }
 }
 ```
+
+### 串行执行 Promises
+
 
 ## 总结
 

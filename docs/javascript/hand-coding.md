@@ -22,6 +22,30 @@ function all(promises) {
 		})
 	})
 }
+ 
+function serise(promises) {
+	return new Promise((resolve, reject) => {
+		const results = [];
+		let current = 0;
+
+		function next() {
+			if (current >= promises.length) {
+				resolve(results);
+				return;
+			}
+			const promise = promises[current];
+			Promise.resolve(promise)
+				.then(result => {
+					results.push(result);
+					current++;
+					next();
+				})
+				.catch(reject);
+		}
+
+		next();
+	})
+}
 ```
 
 ## 防抖

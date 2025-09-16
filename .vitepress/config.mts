@@ -45,6 +45,7 @@ export default defineConfig({
           { text: '类型系统', link: '/javascript/types' },
           { text: '模块系统', link: '/javascript/modules' },
           { text: '异步编程', link: '/javascript/async' },
+          { text: '上下文', link: '/javascript/this' },
           { text: '手撕代码', link: '/javascript/hand-coding' }
         ]
       },
@@ -53,6 +54,13 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '类型系统', link: '/typescript/types' },
+        ]
+      },
+      {
+        text: 'Engineering',
+        collapsed: true,
+        items: [
+          { text: '跨端', link: '/engineering/cross-platform' },
         ]
       },
       {
