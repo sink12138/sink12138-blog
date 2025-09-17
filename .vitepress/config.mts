@@ -84,6 +84,10 @@ export default defineConfig({
           { text: 'Agent', link: '/ai/agent' },
         ]
       },
+      {
+        text: 'Roadmap',
+        link: '/roadmap/index'
+      }
       // {
       //   text: 'Examples',
       //   items: [
