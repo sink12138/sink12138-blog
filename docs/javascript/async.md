@@ -243,9 +243,6 @@ async function handleData() {
 }
 ```
 
-### 串行执行 Promises
-
-
 ## 总结
 
 异步编程是 JavaScript 开发的核心技能。从回调函数到 Promise，再到 async/await，每种方案都有其适用场景。选择合适的异步编程模式可以提高代码的可读性和可维护性。

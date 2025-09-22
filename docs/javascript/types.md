@@ -8,8 +8,6 @@ JavaScript 是一种动态类型语言，具有灵活的类型系统。
 
 ### 原始类型
 
-::: details Primitive Types
-
 ```js
 // 1. Number - 数字类型
 let numVar = 42;
@@ -40,11 +38,8 @@ let symbolVar = Symbol('description');
 let bigIntVar = 9007199254740991n;
 let bigIntVar = BigInt(9007199254740991);
 ```
-:::
 
 ### 引用类型
-
-::: details Reference Types
 
 ```js
 // Object - 对象类型
@@ -69,12 +64,10 @@ let map = new Map();
 // Set - 集合类型
 let set = new Set();
 ```
-:::
 
 ## 类型检测
 
 ### typeof 操作符
-::: details typeof
 ```javascript
 console.log(typeof 42);        // "number"
 console.log(typeof "hello");   // "string"
@@ -85,26 +78,20 @@ console.log(typeof {});        // "object"
 console.log(typeof []);        // "object"
 console.log(typeof function(){}); // "function"
 ```
-:::
 ### instanceof 操作符
-::: details instanceof
 ```javascript
 console.log([] instanceof Array);     // true
 console.log({} instanceof Object);    // true
 console.log(new Date() instanceof Date); // true
 ```
-:::
 ### Object.prototype
-::: details prototype
 ```js
 const getType = (value) => Object.prototype.toString.call(value).slice(8,-1);
 ```
-:::
 ## 类型转换
 
 ### 隐式类型转换
 
-::: details Conversion
 ```javascript
 // 字符串连接
 console.log("5" + 3);            // "53" (字符串)
@@ -118,9 +105,7 @@ console.log("5" === 5);          // false (严格相等)
 console.log("5" * 2);            // 10 (数字)
 console.log("5" / 2);            // 2.5 (数字)
 ```
-:::
 ### 显式类型转换
-::: details Conversion
 ```javascript
 // 转换为数字
 console.log(Number("42"));        // 42
@@ -145,7 +130,6 @@ console.log(Boolean("hello"));    // true
 console.log(Boolean(null));       // false
 console.log(Boolean(undefined));  // false
 ```
-:::
 ## 类型系统
 
 ```markdown

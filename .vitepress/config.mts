@@ -11,7 +11,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/examples/markdown' }
+      { text: 'React', link: '/react/problem'}
     ],
 
     outline: {
@@ -24,6 +24,7 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: 'Articles', link: '/react/articles' },
+          { text: 'Problem', link: '/react/problem' },
           { text: 'Summary', link: '/react/summary' }
         ]
       },
@@ -34,7 +35,6 @@ export default defineConfig({
           { text: 'Rollup', link: '/bundler/rollup' },
           { text: 'Webpack', link: '/bundler/webpack' },
           { text: 'Vite', link: '/bundler/vite' },
-          { text: 'Esbuild', link: '/bundler/esbuild' },
           { text: 'Gulp', link: '/bundler/gulp' },
         ]
       },
@@ -54,13 +54,17 @@ export default defineConfig({
         collapsed: true,
         items: [
           { text: '类型系统', link: '/typescript/types' },
+          { text: '类型推断', link: '/typescript/inference'}
         ]
       },
       {
         text: 'Engineering',
         collapsed: true,
         items: [
-          { text: '跨端', link: '/engineering/cross-platform' },
+          { text: 'CI/CD', link: '/engineering/cicd' },
+          { text: 'Monorepo', link: '/engineering/monorepo' },
+          { text: 'Git', link: '/engineering/git-cheatsheet' },
+          { text: 'Cross', link: '/engineering/cross-platform' },
         ]
       },
       {
@@ -88,13 +92,6 @@ export default defineConfig({
         text: 'Roadmap',
         link: '/roadmap/index'
       }
-      // {
-      //   text: 'Examples',
-      //   items: [
-      //     { text: 'Markdown Examples', link: '/examples/markdown' },
-      //     { text: 'Runtime API Examples', link: '/examples/api' }
-      //   ]
-      // }
     ],
 
     socialLinks: [
