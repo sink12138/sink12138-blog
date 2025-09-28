@@ -14,8 +14,8 @@ hero:
       text: Network
       link: /network/browser
     - theme: alt
-      text: View on Github
-      link: https://github.com/sink12138/sink12138-blog
+      text: Rules
+      link: /ai/ide
 
 features:
   - icon: 🚀

@@ -75,6 +75,7 @@ export default defineConfig({
           { text: '网络模型', link: '/network/osi' },
           { text: '网络协议', link: '/network/protocol' },
           { text: '网络安全', link: '/network/security' },
+          { text: 'CDN', link: '/network/cdn' },
         ]
       },
       {
@@ -86,6 +87,7 @@ export default defineConfig({
           { text: 'LLM', link: '/ai/llm' },
           { text: 'RAG', link: '/ai/rag' },
           { text: 'Agent', link: '/ai/agent' },
+          { text: 'IDE', link: '/ai/ide' },
         ]
       },
       {
